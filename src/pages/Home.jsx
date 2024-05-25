@@ -199,10 +199,17 @@ const Home = () => {
  bg-natural-200 px-6 py-12 text-center dark:bg-neutral-900 md:px-12 lg:text-left'
         >
           <div className='w-100 mx-auto sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl'>
-            <div className='grid items-center gap-12 lg:grid-cols-2 mt-20'>
+            <div className='grid items-center gap-12 lg:grid-cols-2 '>
               <div className=' lg:mt-0'>
-                <h1 className='mt-2 text-white mb-16 text-5xl font-bold tracking-tight md:text-6xl xl:text-7xl'>
-                  यवतमाळ जिल्हा क्रीडा संकुल समिती, यवतमाळ <br />
+                <h1
+                  className='mt-2 text-white mb-16 text-2xl font-bold tracking-tight md:text-6xl xl:text-4xl leading-7  
+'
+                >
+                  जिल्हा क्रीडा संकुल समिती अंतर्गत
+                  <div className=' text-2xl text-blue-500 md:text-6xl xl:text-6xl'>
+                    जलतरण तलाव ,
+                  </div>
+                  यवतमाळ <br />
                   {/* <span className='text-white  text-sm'>for your business</span> */}
                 </h1>
                 {/* <a
