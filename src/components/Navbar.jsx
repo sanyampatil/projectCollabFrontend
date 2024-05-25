@@ -268,16 +268,16 @@ function Navbar (props) {
         <AppBar component='nav'>
           <Toolbar>
             <img className='w-[4.5rem] m-1 p-1' src={smjt} alt='logo' />
-
+            {/* 
             <img
               className='w-[4.5rem] m-1 p-1'
               src={sevenyfiveears}
               alt='logo'
             />
-            <img className='w-[4.5rem] m-1 p-1' src={sports} alt='logo' />
+            <img className='w-[4.5rem] m-1 p-1' src={sports} alt='logo' /> */}
 
             <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-              {/* जिल्हा क्रीडा संकुल समिती, यवतमाळ */}
+              जिल्हा क्रीडा संकुल समिती, यवतमाळ
             </Typography>
 
             <Box sx={{ display: { xs: 'none', sm: 'block' } }}>

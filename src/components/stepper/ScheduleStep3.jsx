@@ -119,8 +119,8 @@ const ScheduleStep3 = () => {
           </RadioGroup>
         </FormControl>
         <div className='flex     mt-10'></div>
-        <p className=' text-xl'>morning batches ➡️</p>
-        <div class='flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700'>
+        {/* <p className=' text-xl'>morning batches ➡️</p> */}
+        {/* <div class='flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700'>
           <input
             id='bordered-radio-1'
             type='radio'
@@ -133,7 +133,7 @@ const ScheduleStep3 = () => {
             class='w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
           >
             Default radio
-          </label>
+          </label>    
           <div className='  flex flex-col items-center justify-center mr-5'>
             <div
               class='relative inline-flex items-center justify-center w-10 h-10 overflow-hidden  rounded-full bg-green-500
@@ -143,8 +143,8 @@ const ScheduleStep3 = () => {
             </div>
             available
           </div>
-        </div>
-        <div class='flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700'>
+        </div> */}
+        {/* <div class='flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700'>
           <input
             checked
             id='bordered-radio-2'
@@ -176,7 +176,7 @@ const ScheduleStep3 = () => {
           >
             Checked state
           </label>
-        </div>
+        </div> */}
       </div>
       <Button
         variant='contained'
