@@ -123,12 +123,7 @@ const ScheduleStep3 = () => {
             name='radio-buttons-group'
           >
             {/* /> */}
-            <div className='flex '>
-              {data &&
-                data.map(e => {
-                  return <PlanCard key={e.planId} plan={e} />
-                })}
-            </div>
+            <div className='flex gap-2'>{<PlanCard plan={data} />}</div>
           </RadioGroup>
         </FormControl>
         <div className='flex     mt-10'></div>
@@ -190,108 +185,264 @@ const ScheduleStep3 = () => {
             Checked state
           </label>
         </div> */}
+        {/* <!-- https://codepen.io/robstinson/pen/MWexYPG --> */}
+        {/* <div class='flex items-center justify-center w-screen h-screen text-gray-800 p-10 bg-gray-200'> */}
+        {/* <!-- Component Start --> */}
+        Morning Batches ➡️
+        <div class='grid lg:grid-cols-3 md:grid-cols-2 gap-6 w-full max-w-6xl'>
+          {/* <!-- Tile 1 --> */}
+          <div class='flex items-center p-4 bg-white rounded'>
+            <div class='flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded'>
+              {/* <svg
+                class='w-6 h-6 fill-current text-green-700'
+                xmlns='http://www.w3.org/2000/svg'
+                viewBox='0 0 20 20'
+                fill='currentColor'
+              > */}
+              {/* <path
+                  fill-rule='evenodd'
+                  d='M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z'
+                  clip-rule='evenodd'
+                /> */}
+              {/* </svg> */}
+              <p className='  text-xl font-bold text-green-950'>79</p>
+            </div>
+            <div class='flex-grow flex flex-col ml-4'>
+              <span class='text-xl font-bold'> available 79</span>
+              <div class='flex items-center justify-between'>
+                <span class='text-gray-500'>morning 6 to 6:45</span>
+                {/* <span class='text-green-500 text-sm font-semibold ml-2'>
+                  +12.6%
+                </span> */}
+              </div>
+            </div>
+          </div>
 
-        <div className='flex flex-col  '>
-          <div
-            class='flex items-center mb-4
+          {/* <!-- Tile 2 --> */}
+          <div class='flex items-center p-4 bg-white rounded'>
+            <div class='flex flex-shrink-0 items-center justify-center bg-red-200 h-16 w-16 rounded'>
+              {/* <svg
+                class='w-6 h-6 fill-current text-red-700'
+                xmlns='http://www.w3.org/2000/svg'
+                viewBox='0 0 20 20'
+                fill='currentColor'
+              > */}
+              {/* <path
+                  fill-rule='evenodd'
+                  d='M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z'
+                  clip-rule='evenodd'
+                /> */}
+              {/* </svg> */}
+              <p className='  text-xl font-bold text-red-950'>80</p>
+            </div>
+            <div class='flex-grow flex flex-col ml-4'>
+              <span class='text-xl font-bold'>batch full</span>
+              <div class='flex items-center justify-between'>
+                <span class='text-gray-500'>morning 7 to 7:45</span>
+                {/* <span class='text-red-500 text-sm font-semibold ml-2'>
+                  -8.1%
+                </span> */}
+              </div>
+            </div>
+          </div>
+
+          {/* <!-- Tile 3 --> */}
+          <div class='flex items-center p-4 bg-white rounded'>
+            <div class='flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded'>
+              <p className='  text-xl font-bold text-red-950'>75</p>
+            </div>
+            <div class='flex-grow flex flex-col ml-4'>
+              <span class='text-xl font-bold'> available 75</span>
+              <div class='flex items-center justify-between'>
+                <span class='text-gray-500'>morning 8 to 8:45</span>
+                {/* <span class='text-green-500 text-sm font-semibold ml-2'>
+                  +28.4%
+                </span> */}
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr className=' font-bold m-5' />
+        {/* <!-- Component End  --> */}
+        {/* </div> */}
+        Evening Batches ➡️
+        <div class='grid lg:grid-cols-3 md:grid-cols-2 gap-6 w-full max-w-6xl'>
+          {/* <!-- Tile 1 --> */}
+          <div class='flex items-center p-4 bg-white rounded'>
+            <div class='flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded'>
+              {/* <svg
+                class='w-6 h-6 fill-current text-green-700'
+                xmlns='http://www.w3.org/2000/svg'
+                viewBox='0 0 20 20'
+                fill='currentColor'
+              > */}
+              {/* <path
+                  fill-rule='evenodd'
+                  d='M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z'
+                  clip-rule='evenodd'
+                /> */}
+              {/* </svg> */}
+              <p className='  text-xl font-bold text-green-950'>69</p>
+            </div>
+            <div class='flex-grow flex flex-col ml-4'>
+              <span class='text-xl font-bold'> available 69</span>
+              <div class='flex items-center justify-between'>
+                <span class='text-gray-500'>Evening 5 to 5:45</span>
+                {/* <span class='text-green-500 text-sm font-semibold ml-2'>
+                  +12.6%
+                </span> */}
+              </div>
+            </div>
+          </div>
+
+          {/* <!-- Tile 2 --> */}
+          <div class='flex items-center p-4 bg-white rounded'>
+            <div class='flex flex-shrink-0 items-center justify-center bg-red-200 h-16 w-16 rounded'>
+              {/* <svg
+                class='w-6 h-6 fill-current text-red-700'
+                xmlns='http://www.w3.org/2000/svg'
+                viewBox='0 0 20 20'
+                fill='currentColor'
+              > */}
+              {/* <path
+                  fill-rule='evenodd'
+                  d='M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z'
+                  clip-rule='evenodd'
+                /> */}
+              {/* </svg> */}
+              <p className='  text-xl font-bold text-red-950'>80</p>
+            </div>
+            <div class='flex-grow flex flex-col ml-4'>
+              <span class='text-xl font-bold'>batch full</span>
+              <div class='flex items-center justify-between'>
+                <span class='text-gray-500'>Evening 6 to 6:45</span>
+                {/* <span class='text-red-500 text-sm font-semibold ml-2'>
+                  -8.1%
+                </span> */}
+              </div>
+            </div>
+          </div>
+
+          {/* <!-- Tile 3 --> */}
+          <div class='flex items-center p-4 bg-white rounded'>
+            <div class='flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded'>
+              <p className='  text-xl font-bold text-red-950'>75</p>
+            </div>
+            <div class='flex-grow flex flex-col ml-4'>
+              <span class='text-xl font-bold'> available 77</span>
+              <div class='flex items-center justify-between'>
+                <span class='text-gray-500'>Evening 7 to 7:45</span>
+                {/* <span class='text-green-500 text-sm font-semibold ml-2'>
+                  +28.4%
+                </span> */}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className=' mt-5 bg-amber-100  '>
+          <h1 className=' font-semibold text-2xl ml-44'>Select Batch Time</h1>
+          <div className='flex flex-col  '>
+            <div
+              class='flex items-center mb-4
     
 
           '
-            onClick={() => setmorn(true)}
-          >
-            <input
-              id='default-radio-1'
-              type='radio'
-              value=''
-              name='default-radio'
-              class='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
-            />
-            <label
-              for='default-radio-1'
-              class='ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+              onClick={() => setmorn(true)}
             >
-              morning
-            </label>
-          </div>
-          <div class='flex items-center' onClick={() => setmorn(false)}>
-            <input
-              checked
-              id='default-radio-2'
-              type='radio'
-              value=''
-              name='default-radio'
-              class='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
-            />
-            <label
-              for='default-radio-2'
-              class='ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
-            >
-              Evening
-            </label>
-          </div>
-        </div>
-        <div className=' cardBatchesTime '>
-          {morn && (
-            <div className=' shadow-lg w-60 h-64 bg-slate-200  flex flex-col items-center justify-center  rounded-lg'>
-              <h3 class='mb-4 font-semibold text-gray-900 dark:text-white'>
-                select morning time
-              </h3>
-              <ul class='w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white'>
-                <li class='w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600'>
-                  <div class='flex items-center ps-3'>
-                    <input
-                      id='list-radio-license'
-                      type='radio'
-                      value=''
-                      name='list-radio'
-                      class='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500'
-                    />
-                    <label
-                      for='list-radio-license'
-                      class='w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
-                    >
-                      7 to 8{' '}
-                    </label>
-                  </div>
-                </li>
-
-                <li class='w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600'>
-                  <div class='flex items-center ps-3'>
-                    <input
-                      id='list-radio-military'
-                      type='radio'
-                      value=''
-                      name='list-radio'
-                      class='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500'
-                    />
-                    <label
-                      for='list-radio-military'
-                      class='w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
-                    >
-                      8 to 9
-                    </label>
-                  </div>
-                </li>
-                <li class='w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600'>
-                  <div class='flex items-center ps-3'>
-                    <input
-                      id='list-radio-passport'
-                      type='radio'
-                      value=''
-                      name='list-radio'
-                      class='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500'
-                    />
-                    <label
-                      for='list-radio-passport'
-                      class='w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
-                    >
-                      9 to 10
-                    </label>
-                  </div>
-                </li>
-              </ul>
+              <input
+                id='default-radio-1'
+                type='radio'
+                value=''
+                name='default-radio'
+                class='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
+              />
+              <label
+                for='default-radio-1'
+                class='ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+              >
+                morning
+              </label>
             </div>
-          )}
+            <div class='flex items-center' onClick={() => setmorn(false)}>
+              <input
+                checked
+                id='default-radio-2'
+                type='radio'
+                value=''
+                name='default-radio'
+                class='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
+              />
+              <label
+                for='default-radio-2'
+                class='ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+              >
+                Evening
+              </label>
+            </div>
+          </div>
+          <div className=' cardBatchesTime '>
+            {morn && (
+              <div className=' shadow-lg w-60 h-64 bg-slate-200  flex flex-col items-center justify-center  rounded-lg'>
+                <h3 class='mb-4 font-semibold text-gray-900 dark:text-white'>
+                  select morning time
+                </h3>
+                <ul class='w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white'>
+                  <li class='w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600'>
+                    <div class='flex items-center ps-3'>
+                      <input
+                        id='list-radio-license'
+                        type='radio'
+                        value=''
+                        name='list-radio'
+                        class='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500'
+                      />
+                      <label
+                        for='list-radio-license'
+                        class='w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+                      >
+                        7 to 8{' '}
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class='w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600'>
+                    <div class='flex items-center ps-3'>
+                      <input
+                        id='list-radio-military'
+                        type='radio'
+                        value=''
+                        name='list-radio'
+                        class='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500'
+                      />
+                      <label
+                        for='list-radio-military'
+                        class='w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+                      >
+                        8 to 9
+                      </label>
+                    </div>
+                  </li>
+                  <li class='w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600'>
+                    <div class='flex items-center ps-3'>
+                      <input
+                        id='list-radio-passport'
+                        type='radio'
+                        value=''
+                        name='list-radio'
+                        class='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500'
+                      />
+                      <label
+                        for='list-radio-passport'
+                        class='w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+                      >
+                        9 to 10
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <Button
