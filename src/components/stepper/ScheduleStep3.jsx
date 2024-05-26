@@ -43,6 +43,7 @@ const ScheduleStep3 = () => {
       'http://localhost:5000/api/plan/getAllPlan'
     )
     setData(response.data)
+    console.log(response)
   }
 
   const razorpayKey = useSelector(state => state?.razorpay?.key)
