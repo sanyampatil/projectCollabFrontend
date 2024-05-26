@@ -4,6 +4,7 @@ import { FaArrowRight, FaArrowRightArrowLeft } from 'react-icons/fa6'
 import sports from '../assets/sports.png'
 import smjt from '../assets/smjt.png'
 import sevenyfiveears from '../assets/sevenyfiveears.jpg'
+import About from './About'
 
 const Home = () => {
   return (
@@ -193,10 +194,10 @@ const Home = () => {
         </div>
       </nav>
 
-      <section className=' '>
+      <section className='  w-full    h-[75vh] bg-gray-200 '>
         <div
           className='bg-slate-900
- bg-natural-200 px-6 py-12 text-center dark:bg-neutral-900 md:px-12 lg:text-left'
+ bg-natural-200 px-6 py-12 text-center dark:bg-neutral-900 md:px-12 lg:text-left   shadow-2xl'
         >
           <div className='w-100 mx-auto sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl'>
             <div className='grid items-center gap-12 lg:grid-cols-2 '>
@@ -250,7 +251,7 @@ const Home = () => {
               <div className='mb-12 lg:mb-0'>
                 <img
                   src='https://images.pexels.com/photos/870170/pexels-photo-870170.jpeg?cs=srgb&dl=pexels-marctutorials-298692-870170.jpg&fm=jpg'
-                  className='w-full h-[70vh] rounded-lg shadow-lg dark:shadow-black/20'
+                  className='w-full h-[100%] rounded-lg shadow-lg dark:shadow-black/20'
                   alt=''
                 />
               </div>
@@ -258,6 +259,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <div className=' h-[90vh] bg-lime-200'>
+        <About />
+      </div>
     </>
   )
 }

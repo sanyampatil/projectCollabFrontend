@@ -5,6 +5,11 @@ import {
   FormLabel,
   RadioGroup
 } from '@mui/material'
+import { experimentalStyled as styled } from '@mui/material/styles'
+import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
+import Grid from '@mui/material/Grid'
+
 import React, { useState } from 'react'
 import Radio from '@mui/material/Radio'
 import axios from 'axios'
@@ -18,6 +23,13 @@ import {
   verifyUserPayment
 } from '../../redux/slices/paymentSlice'
 import { useNavigate } from 'react-router-dom'
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(2),
+  textAlign: 'center',
+  color: theme.palette.text.secondary
+}))
 
 const ScheduleStep3 = () => {
   const [male, setmale] = useState(true)
@@ -111,7 +123,7 @@ const ScheduleStep3 = () => {
             name='radio-buttons-group'
           >
             {/* /> */}
-            <div className='flex'>
+            <div className='flex '>
               {data &&
                 data.map(e => {
                   return <PlanCard key={e.planId} plan={e} />
@@ -178,6 +190,7 @@ const ScheduleStep3 = () => {
             Checked state
           </label>
         </div> */}
+
         <div className='flex flex-col  '>
           <div
             class='flex items-center mb-4
@@ -217,7 +230,6 @@ const ScheduleStep3 = () => {
             </label>
           </div>
         </div>
-
         <div className=' cardBatchesTime '>
           {morn && (
             <div className=' shadow-lg w-60 h-64 bg-slate-200  flex flex-col items-center justify-center  rounded-lg'>

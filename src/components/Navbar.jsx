@@ -267,7 +267,7 @@ function Navbar (props) {
 
         <AppBar component='nav'>
           <Toolbar>
-            <img className='w-[4.5rem] m-1 p-1' src={smjt} alt='logo' />
+            {/* <img className='w-[4.5rem] m-1 p-1' src={smjt} alt='logo' /> */}
             {/* 
             <img
               className='w-[4.5rem] m-1 p-1'
