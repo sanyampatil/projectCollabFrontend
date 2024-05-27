@@ -5,8 +5,11 @@ import sports from '../assets/sports.png'
 import smjt from '../assets/smjt.png'
 import sevenyfiveears from '../assets/sevenyfiveears.jpg'
 import About from './About'
+import { useSelector } from 'react-redux'
 
 const Home = () => {
+  const { isLoggedIn } = useSelector(state => state?.auth)
+
   return (
     <>
       <nav class=' mt-20  bg-red-500'>
@@ -128,41 +131,37 @@ const Home = () => {
                   </button>
                 </div>
 
-                <div
-                  class='absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'
-                  role='menu'
-                  aria-orientation='vertical'
-                  aria-labelledby='user-menu-button'
-                  tabindex='-1'
-                >
-                  <a
-                    href='#'
-                    class='block px-4 py-2 text-sm text-gray-700'
-                    role='menuitem'
+                {isLoggedIn && (
+                  <div
+                    class='absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'
+                    role='menu'
+                    aria-orientation='vertical'
+                    aria-labelledby='user-menu-button'
                     tabindex='-1'
-                    id='user-menu-item-0'
                   >
-                    Your Profile
-                  </a>
-                  <a
-                    href='#'
-                    class='block px-4 py-2 text-sm text-gray-700'
-                    role='menuitem'
-                    tabindex='-1'
-                    id='user-menu-item-1'
-                  >
-                    Your batch
-                  </a>
-                  <a
-                    href='#'
-                    class='block px-4 py-2 text-sm text-gray-700'
-                    role='menuitem'
-                    tabindex='-1'
-                    id='user-menu-item-2'
-                  >
-                    Sign out
-                  </a>
-                </div>
+                    <Link to='/user/profile'>
+                      <a
+                        href='#'
+                        class='block px-4 py-2 text-sm text-gray-700'
+                        role='menuitem'
+                        tabindex='-1'
+                        id='user-menu-item-0'
+                      >
+                        Your Profile
+                      </a>
+                    </Link>
+
+                    <a
+                      href='#'
+                      class='block px-4 py-2 text-sm text-gray-700'
+                      role='menuitem'
+                      tabindex='-1'
+                      id='user-menu-item-1'
+                    >
+                      Your batch
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -194,7 +193,7 @@ const Home = () => {
         </div>
       </nav>
 
-      <section className='  w-full    h-[75vh] bg-gray-200 '>
+      <section className='  w-full     bg-gray-200 '>
         <div
           className='bg-slate-900
  bg-natural-200 px-6 py-12 text-center dark:bg-neutral-900 md:px-12 lg:text-left   shadow-2xl'
@@ -234,7 +233,7 @@ const Home = () => {
                       type='button'
                       className='text-white flex gap-2 items-center w-full bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'
                     >
-                      Get Started <FaArrowRight />
+                      सभासद व्हा <FaArrowRight />
                     </button>
                   </a>
                 </Link>

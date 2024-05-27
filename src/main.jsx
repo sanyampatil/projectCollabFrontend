@@ -29,6 +29,7 @@ import Batches from './pages/Batches.jsx'
 import UserRegistration from './pages/UserRegistration.jsx'
 import UserRegistrationPaymentSuccess from './pages/Payment/UserRegistrationPaymentSuccess.jsx'
 import AllStudentData from './pages/AllStudentData .jsx'
+import About from './pages/About.jsx'
 const Home = lazy(() => import('./pages/Home.jsx'))
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,7 +39,8 @@ const router = createBrowserRouter(
       <Route path='/login' element={<Login />} />
       <Route path='/batches' element={<Batches />}></Route>
       <Route path='/process' element={<Step />} />
-      <Route path='/user/profile' element={<UserProfile />}></Route>
+      <Route path='/user/profile' element={<UserProfile />}></Route>;
+      <Route path='/about' element={<About />}></Route>
       {/* <Route path='/application' element={<Application />}></Route> */}
       {/* <Route path='/checkout/success' element={<CheckOutSuccess />}></Route>
       <Route path='/checkout/fail' element={<CheckOutFail />}></Route> */}
