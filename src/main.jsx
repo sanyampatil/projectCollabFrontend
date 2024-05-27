@@ -9,7 +9,8 @@ import {
   Router,
   createBrowserRouter,
   createRoutesFromElements,
-  RouterProvider
+  RouterProvider,
+  BrowserRouter
 } from 'react-router-dom'
 
 import MainLayout from './layout/MainLayout.jsx'
@@ -31,37 +32,39 @@ import UserRegistrationPaymentSuccess from './pages/Payment/UserRegistrationPaym
 import AllStudentData from './pages/AllStudentData .jsx'
 import About from './pages/About.jsx'
 const Home = lazy(() => import('./pages/Home.jsx'))
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path='' element={<MainLayout />}>
-      <Route path='/' element={<Home />} />
-      <Route path='/register' element={<Register />} />
-      <Route path='/login' element={<Login />} />
-      <Route path='/batches' element={<Batches />}></Route>
-      <Route path='/process' element={<Step />} />
-      <Route path='/user/profile' element={<UserProfile />}></Route>;
-      <Route path='/about' element={<About />}></Route>
-      {/* <Route path='/application' element={<Application />}></Route> */}
-      {/* <Route path='/checkout/success' element={<CheckOutSuccess />}></Route>
-      <Route path='/checkout/fail' element={<CheckOutFail />}></Route> */}
-      <Route
-        path='/register/successfull'
-        element={<RegistrationPaymentSuccess />}
-      ></Route>
-      <Route path='/user-registration' element={<UserRegistration />}></Route>
-      <Route
-        path='/user-registration/success'
-        element={<UserRegistrationPaymentSuccess />}
-      ></Route>
-      <Route path='/Admin-canData' element={<AllStudentData />} />
-    </Route>
-  )
-)
+
+// const router = createBrowserRouter(
+//   createRoutesFromElements(
+//     <Route path='' element={<MainLayout />}>
+//       <Route path='/' element={<Home />} />
+//       <Route path='/register' element={<Register />} />
+//       <Route path='/login' element={<Login />} />
+//       <Route path='/batches' element={<Batches />}></Route>
+//       <Route path='/process' element={<Step />} />
+//       <Route path='/user/profile' element={<UserProfile />}></Route>;
+//       <Route path='/about' element={<About />}></Route>
+//       {/* <Route path='/application' element={<Application />}></Route> */}
+//       {/* <Route path='/checkout/success' element={<CheckOutSuccess />}></Route>
+//       <Route path='/checkout/fail' element={<CheckOutFail />}></Route> */}
+//       <Route
+//         path='/register/successfull'
+//         element={<RegistrationPaymentSuccess />}
+//       ></Route>
+//       <Route path='/user-registration' element={<UserRegistration />}></Route>
+//       <Route
+//         path='/user-registration/success'
+//         element={<UserRegistrationPaymentSuccess />}
+//       ></Route>
+//       <Route path='/Admin-canData' element={<AllStudentData />} />
+//     </Route>
+//   )
+// )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <RouterProvider router={router} />
-    <App />
-    <Toaster />
+    <BrowserRouter>
+      <App />
+      <Toaster />
+    </BrowserRouter>
   </Provider>
 )
