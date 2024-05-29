@@ -51,17 +51,6 @@ const About = () => {
           Dr. Pankaj Aashiya (IAS)
         </div>
       </div>
-
-      <div class='p-4 max-w-sm m-10'>
-        <div class='flex rounded-lg h-full dark:bg-gray-800 bg-teal-400 p-8 flex-col'>
-          <div class='flex items-center mb-3'></div>
-          <img className=' border-2 border-black  w-64' src={IASPhoto} alt='' />
-          <h5 class='  font-semibold tracking-tight text-gray-900 dark:text-white'>
-            DSO
-          </h5>
-          Ghanshyam Rathod
-        </div>
-      </div>
     </div>
   )
 }
