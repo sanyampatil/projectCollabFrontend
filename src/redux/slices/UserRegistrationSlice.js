@@ -11,15 +11,18 @@ const initialState = {
 
 export const userRegistration = createAsyncThunk('/process', async data => {
   try {
-    const response = axiosInstance.post('/user/swim/register', data)
+    const response = axiosInstance.post(
+      `/user/swim/register:${data[1]}`,
+      data[0]
+    )
     console.log(response)
     toast.promise(response, {
       loading: 'Completing step 1',
       success: 'Step one completed successfully',
-      error: 'Failed to create Cource'
+      error: 'Failed to complte step 1'
     })
-    console.log(response)
-    return (await response).data
+    console.log((await response).data)
+    return (await response).data.user
   } catch (error) {
     console.log(error)
   }
@@ -64,6 +67,27 @@ export const uploadFitness = createAsyncThunk('/fitness', async data => {
   return (await response).data
 })
 
+export const uploadBatch = createAsyncThunk('/batches/upload', async data => {
+  const config = {
+    headers: {
+      'content-Type': 'application/json'
+    }
+  }
+  const userData = JSON.parse(localStorage.getItem('userData'))
+  const response = await axiosInstance.post(
+    `/user/batch/upload${userData._id}`,
+    data,
+    config
+  )
+  toast.promise(response, {
+    loading: 'Wait!! selection on process',
+    success: 'Suucessfully selceted',
+    error: 'failed to select the batch'
+  })
+  console.log((await response).data)
+  return await response.data
+})
+
 const userRegistrationSlice = createSlice({
   name: 'userRegistrationSlice',
   initialState,
@@ -71,10 +95,11 @@ const userRegistrationSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(userRegistration.fulfilled, async (state, action) => {
-        console.log(action.payload.user)
+        console.log(action.payload)
         state.registerUserData = action.payload.user
-        localStorage.setItem('userData', JSON.stringify(action.payload.user))
+        localStorage.setItem('userData', JSON.stringify(action.payload))
       })
+
       .addCase(getUserRegistration.fulfilled, (state, action) => {
         console.log(action.payload.user)
         state.registerUserData = action.payload.user

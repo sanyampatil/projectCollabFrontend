@@ -55,7 +55,7 @@ export const loginUser = createAsyncThunk('/login', async data => {
     console.log(data)
     console.log('axiosInstance'.axiosInstance)
     const res = axiosInstance.post('/auth/login', data)
-    toast.promise(res, {
+    toast.promise(res, {  
       loading: 'Wait! Authentication in process',
       success: data => {
         return data?.data?.msg

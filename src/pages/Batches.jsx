@@ -37,13 +37,13 @@ function Batches () {
         जिल्हा क्रीडा अधिकारी यवतमाळ अंतर्गत
       </h1> */}
 
-      <h1 class='mb-4 text-lg font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white'>
-        जिल्हा क्रीडा संकुल " जलतरण -तलाव" आझाद मैदान,यवतमाळ
+      <h1 class='mb-4 text-md font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white'>
+        " जलतरण -तलाव फी "
       </h1>
       <div className=' relative'>
         <div class='relative overflow-x-auto shadow-md sm:rounded-lg'>
-          <table class='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
-            <thead class='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
+          <table class='w-full text-lg   text-left rtl:text-right text-gray-500 dark:text-gray-400'>
+            <thead class='text-lg text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
               <tr>
                 <th scope='col' class='px-6 py-3'>
                   अ. क्र.
@@ -192,7 +192,7 @@ function Batches () {
             </DialogTitle>
             <DialogContent>
               <DialogContentText>
-                <p className=' text-black text-xl'>
+                <p className=' text-black '>
                   कृपया दिलेल्या योजेनेचा लाभ घेण्या साठी आणि सभासद होण्या करिता
                   काही शिल्क स्वीकारण्यात येत आहेस
                 </p>

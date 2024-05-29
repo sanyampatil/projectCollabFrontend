@@ -15,7 +15,7 @@ import Radio from '@mui/material/Radio'
 import axios from 'axios'
 import { useEffect } from 'react'
 import PlanCard from '../Constant/PlanCard'
-import { useDispatch, useSelector } from 'react-redux'
+import { batch, useDispatch, useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import {
   getRazorPayId,
@@ -23,6 +23,8 @@ import {
   verifyUserPayment
 } from '../../redux/slices/paymentSlice'
 import { useNavigate } from 'react-router-dom'
+import { CloseFullscreen, Flag } from '@mui/icons-material'
+import { uploadBatch } from '../../redux/slices/UserRegistrationSlice'
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -32,8 +34,16 @@ const Item = styled(Paper)(({ theme }) => ({
 }))
 
 const ScheduleStep3 = () => {
-  const [male, setmale] = useState(true)
-  const [morning, setmorning] = useState()
+  const [morn, setMorn] = useState(false)
+  const [even, setEven] = useState(false)
+  const [selectedPlan, setSelectedPlan] = useState(null)
+
+  const [batchData, setBatchData] = useState({
+    batch: '',
+    batchTime: '',
+    batchVel: ''
+  })
+
   const [data, setData] = useState()
   console.log('start')
   const navigate = useNavigate()
@@ -43,7 +53,6 @@ const ScheduleStep3 = () => {
       'http://localhost:5000/api/plan/getAllPlan'
     )
     setData(response.data)
-    console.log(response)
   }
 
   const razorpayKey = useSelector(state => state?.razorpay?.key)
@@ -103,11 +112,50 @@ const ScheduleStep3 = () => {
     await dispatch(purchaseCourseBundle(userData._id))
   }
 
+  function handleUserInput (e) {
+    const { name, value } = e.target
+    setBatchData({
+      ...batchData,
+      [name]: value
+    })
+    if (name === 'batchTime') {
+      setTimePhase(value)
+    }
+  }
+
+  const setTimePhase = time => {
+    if (time === 'AM') {
+      setMorn(true)
+      setEven(false)
+    } else {
+      setMorn(false)
+      setEven(true)
+    }
+  }
+
+  console.log('batchData', batchData)
+
   useEffect(() => {
     load()
   }, [])
-  const [morn, setmorn] = useState()
 
+  const handlePlanSelect = plan => {
+    setSelectedPlan(plan)
+    console.log(selectedPlan)
+    batchData.batch = selectedPlan
+  }
+
+  async function handleRegister (e) {
+    e.preventDefault()
+    const formData = new FormData()
+
+    formData.append('batch', batchData.batch.planId)
+    formData.append('batchTime', batchData.batchTime)
+    formData.append('batchVel', batchData.batchVel)
+
+    const response = await dispatch(uploadBatch(formData))
+    console.log(response)
+  }
   return (
     <div>
       <div className=''>
@@ -123,89 +171,27 @@ const ScheduleStep3 = () => {
             defaultValue='female'
             name='radio-buttons-group'
           >
-            {/* /> */}
-            <div className='flex gap-2'>{<PlanCard plan={data} />}</div>
+            {console.log(data)}
+            <div className='flex gap-2'>
+              {data &&
+                data.map((plan, index) => {
+                  return (
+                    <PlanCard
+                      plan={plan}
+                      onSelect={handlePlanSelect}
+                      index={index}
+                    />
+                  )
+                })}
+            </div>
           </RadioGroup>
         </FormControl>
-        <div className='flex     mt-10'></div>
-        {/* <p className=' text-xl'>morning batches ➡️</p> */}
-        {/* <div class='flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700'>
-          <input
-            id='bordered-radio-1'
-            type='radio'
-            value=''
-            name='bordered-radio'
-            class='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
-          />
-          <label
-            for='bordered-radio-1'
-            class='w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
-          >
-            Default radio
-          </label>    
-          <div className='  flex flex-col items-center justify-center mr-5'>
-            <div
-              class='relative inline-flex items-center justify-center w-10 h-10 overflow-hidden  rounded-full bg-green-500
-'
-            >
-              <span class='font-bold  text-white  '>10</span>
-            </div>
-            available
-          </div>
-        </div> */}
-        {/* <div class='flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700'>
-          <input
-            checked
-            id='bordered-radio-2'
-            type='radio'
-            value=''
-            name='bordered-radio'
-            class='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
-          />
-          <label
-            for='bordered-radio-2'
-            class='w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
-          >
-            Checked state
-          </label>
-        </div>
-
-        <div class='flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700'>
-          <input
-            checked
-            id='bordered-radio-2'
-            type='radio'
-            value=''
-            name='bordered-radio'
-            class='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
-          />
-          <label
-            for='bordered-radio-2'
-            class='w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
-          >
-            Checked state
-          </label>
-        </div> */}
-        {/* <!-- https://codepen.io/robstinson/pen/MWexYPG --> */}
-        {/* <div class='flex items-center justify-center w-screen h-screen text-gray-800 p-10 bg-gray-200'> */}
-        {/* <!-- Component Start --> */}
+        <div className='flex mt-10'></div>
         Morning Batches ➡️
         <div class='grid lg:grid-cols-3 md:grid-cols-2 gap-6 w-full max-w-6xl'>
           {/* <!-- Tile 1 --> */}
           <div class='flex items-center p-4 bg-white rounded'>
             <div class='flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded'>
-              {/* <svg
-                class='w-6 h-6 fill-current text-green-700'
-                xmlns='http://www.w3.org/2000/svg'
-                viewBox='0 0 20 20'
-                fill='currentColor'
-              > */}
-              {/* <path
-                  fill-rule='evenodd'
-                  d='M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z'
-                  clip-rule='evenodd'
-                /> */}
-              {/* </svg> */}
               <p className='  text-xl font-bold text-green-950'>79</p>
             </div>
             <div class='flex-grow flex flex-col ml-4'>
@@ -240,9 +226,6 @@ const ScheduleStep3 = () => {
               <span class='text-xl font-bold'>batch full</span>
               <div class='flex items-center justify-between'>
                 <span class='text-gray-500'>morning 7 to 7:45</span>
-                {/* <span class='text-red-500 text-sm font-semibold ml-2'>
-                  -8.1%
-                </span> */}
               </div>
             </div>
           </div>
@@ -256,33 +239,16 @@ const ScheduleStep3 = () => {
               <span class='text-xl font-bold'> available 75</span>
               <div class='flex items-center justify-between'>
                 <span class='text-gray-500'>morning 8 to 8:45</span>
-                {/* <span class='text-green-500 text-sm font-semibold ml-2'>
-                  +28.4%
-                </span> */}
               </div>
             </div>
           </div>
         </div>
         <hr className=' font-bold m-5' />
-        {/* <!-- Component End  --> */}
-        {/* </div> */}
         Evening Batches ➡️
         <div class='grid lg:grid-cols-3 md:grid-cols-2 gap-6 w-full max-w-6xl'>
           {/* <!-- Tile 1 --> */}
           <div class='flex items-center p-4 bg-white rounded'>
             <div class='flex flex-shrink-0 items-center justify-center bg-green-200 h-16 w-16 rounded'>
-              {/* <svg
-                class='w-6 h-6 fill-current text-green-700'
-                xmlns='http://www.w3.org/2000/svg'
-                viewBox='0 0 20 20'
-                fill='currentColor'
-              > */}
-              {/* <path
-                  fill-rule='evenodd'
-                  d='M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z'
-                  clip-rule='evenodd'
-                /> */}
-              {/* </svg> */}
               <p className='  text-xl font-bold text-green-950'>69</p>
             </div>
             <div class='flex-grow flex flex-col ml-4'>
@@ -299,27 +265,12 @@ const ScheduleStep3 = () => {
           {/* <!-- Tile 2 --> */}
           <div class='flex items-center p-4 bg-white rounded'>
             <div class='flex flex-shrink-0 items-center justify-center bg-red-200 h-16 w-16 rounded'>
-              {/* <svg
-                class='w-6 h-6 fill-current text-red-700'
-                xmlns='http://www.w3.org/2000/svg'
-                viewBox='0 0 20 20'
-                fill='currentColor'
-              > */}
-              {/* <path
-                  fill-rule='evenodd'
-                  d='M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z'
-                  clip-rule='evenodd'
-                /> */}
-              {/* </svg> */}
               <p className='  text-xl font-bold text-red-950'>80</p>
             </div>
             <div class='flex-grow flex flex-col ml-4'>
               <span class='text-xl font-bold'>batch full</span>
               <div class='flex items-center justify-between'>
                 <span class='text-gray-500'>Evening 6 to 6:45</span>
-                {/* <span class='text-red-500 text-sm font-semibold ml-2'>
-                  -8.1%
-                </span> */}
               </div>
             </div>
           </div>
@@ -333,9 +284,6 @@ const ScheduleStep3 = () => {
               <span class='text-xl font-bold'> available 77</span>
               <div class='flex items-center justify-between'>
                 <span class='text-gray-500'>Evening 7 to 7:45</span>
-                {/* <span class='text-green-500 text-sm font-semibold ml-2'>
-                  +28.4%
-                </span> */}
               </div>
             </div>
           </div>
@@ -343,43 +291,15 @@ const ScheduleStep3 = () => {
         <div className=' mt-5 bg-amber-100  '>
           <h1 className=' font-semibold text-2xl ml-44'>Select Batch Time</h1>
           <div className='flex flex-col  '>
-            <div
-              class='flex items-center mb-4
-    
-
-          '
-              onClick={() => setmorn(true)}
+            <select
+              name='batchTime'
+              value={batchData.batchTime}
+              onChange={handleUserInput}
             >
-              <input
-                id='default-radio-1'
-                type='radio'
-                value=''
-                name='default-radio'
-                class='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
-              />
-              <label
-                for='default-radio-1'
-                class='ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
-              >
-                morning
-              </label>
-            </div>
-            <div class='flex items-center' onClick={() => setmorn(false)}>
-              <input
-                checked
-                id='default-radio-2'
-                type='radio'
-                value=''
-                name='default-radio'
-                class='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
-              />
-              <label
-                for='default-radio-2'
-                class='ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
-              >
-                Evening
-              </label>
-            </div>
+              <option value=''>-select-</option>
+              <option value='AM'>morning</option>
+              <option value='PM'>Evening</option>
+            </select>
           </div>
           <div className=' cardBatchesTime '>
             {morn && (
@@ -393,8 +313,10 @@ const ScheduleStep3 = () => {
                       <input
                         id='list-radio-license'
                         type='radio'
-                        value=''
-                        name='list-radio'
+                        value='7-8'
+                        checked={batchData.batchVel === '7-8'}
+                        name='batchVel'
+                        onChange={handleUserInput}
                         class='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500'
                       />
                       <label
@@ -411,9 +333,11 @@ const ScheduleStep3 = () => {
                       <input
                         id='list-radio-military'
                         type='radio'
-                        value=''
-                        name='list-radio'
+                        value='8-9'
+                        checked={batchData.batchVel === '8-9'}
+                        name='batchVel'
                         class='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500'
+                        onChange={handleUserInput}
                       />
                       <label
                         for='list-radio-military'
@@ -428,9 +352,78 @@ const ScheduleStep3 = () => {
                       <input
                         id='list-radio-passport'
                         type='radio'
-                        value=''
-                        name='list-radio'
+                        value='9-10'
+                        checked={batchData.batchVel === '9-10'}
+                        name='batchVel'
+                        onChange={handleUserInput}
                         class='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500'
+                      />
+                      <label
+                        for='list-radio-passport'
+                        class='w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+                      >
+                        9 to 10
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            )}
+            {even && (
+              <div className=' shadow-lg w-60 h-64 bg-slate-200  flex flex-col items-center justify-center  rounded-lg'>
+                <h3 class='mb-4 font-semibold text-gray-900 dark:text-white'>
+                  select morning time
+                </h3>
+                <ul class='w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white'>
+                  <li class='w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600'>
+                    <div class='flex items-center ps-3'>
+                      <input
+                        id='list-radio-license'
+                        type='radio'
+                        value='7-8'
+                        name='batchVel'
+                        checked={batchData.batchVel === '7-8'}
+                        onChange={handleUserInput}
+                        className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500'
+                      />
+                      <label
+                        for='list-radio-license'
+                        class='w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+                      >
+                        7 to 8{' '}
+                      </label>
+                    </div>
+                  </li>
+
+                  <li class='w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600'>
+                    <div class='flex items-center ps-3'>
+                      <input
+                        id='list-radio-military'
+                        type='radio'
+                        value='8-9'
+                        name='batchVel'
+                        checked={batchData.batchVel === '8-9'}
+                        onChange={handleUserInput}
+                        className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500'
+                      />
+                      <label
+                        for='list-radio-military'
+                        class='w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+                      >
+                        8 to 9
+                      </label>
+                    </div>
+                  </li>
+                  <li class='w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600'>
+                    <div class='flex items-center ps-3'>
+                      <input
+                        id='list-radio-passport'
+                        type='radio'
+                        value='9-10'
+                        name='batchVel'
+                        checked={batchData.batchVel === '9-10'}
+                        onChange={handleUserInput}
+                        className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500'
                       />
                       <label
                         for='list-radio-passport'
@@ -446,11 +439,7 @@ const ScheduleStep3 = () => {
           </div>
         </div>
       </div>
-      <Button
-        variant='contained'
-        color='secondary'
-        onClick={handleSubscription}
-      >
+      <Button variant='contained' color='secondary' onClick={handleRegister}>
         save and continue
       </Button>
     </div>

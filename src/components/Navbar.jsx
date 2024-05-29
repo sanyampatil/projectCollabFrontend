@@ -149,7 +149,6 @@ function Navbar (props) {
 
         <AppBar component='nav'>
           <Toolbar>
-            <img className='w-[4.5rem] m-1 p-1' src={smjt} alt='logo' />
             {/* 
             <img
               className='w-[4.5rem] m-1 p-1'
@@ -168,7 +167,7 @@ function Navbar (props) {
                       onClick={() => navigate(item.slug)}
                       className={
                         item.button
-                          ? ' bg-green-400 inline-bock px-6 py-2 duration-200   hover:bg-blue-100 hover:text-black rounded-md m-2'
+                          ? ' bg-green-400 text-black inline-bock px-6 py-2 duration-200   hover:bg-blue-100 hover:text-black rounded-md m-2'
                           : ' text-white  p-4 uppercase'
                       }
                     >
