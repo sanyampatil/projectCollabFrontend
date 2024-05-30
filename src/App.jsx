@@ -1,23 +1,27 @@
 import React, { lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import MainLayout from './layout/MainLayout.jsx'
-//  import Home from './pages/Home.jsx'
-import Register from './pages/Register.jsx'
-import Login from './pages/Login.jsx'
-import { Provider } from 'react-redux'
-import store from './redux/Store.js'
-import Step from './pages/Step.jsx'
-import UserProfile from './pages/UserProfile.jsx'
 import { Toaster } from 'react-hot-toast'
-// import Application from './pages/Application.jsx'
-// import CheckOutSuccess from './pages/Payment/CheckOutSuccess.jsx'
-// import CheckOutFail from './pages/Payment/CheckOutFail.jsx'
-import RegistrationPaymentSuccess from './pages/Payment/RegistrationPaymentSuccess.jsx'
-import Batches from './pages/Batches.jsx'
-import UserRegistration from './pages/UserRegistration.jsx'
-import UserRegistrationPaymentSuccess from './pages/Payment/UserRegistrationPaymentSuccess.jsx'
-import AllStudentData from './pages/AllStudentData .jsx'
-import About from './pages/About.jsx'
+import { Provider } from 'react-redux'
+
+const MainLayout = lazy(() => import('./layout/MainLayout.jsx'))
+const Register = lazy(() => import('./pages/Register.jsx'))
+const Login = lazy(() => import('./pages/Login.jsx'))
+const store = lazy(() => import('./redux/Store.js'))
+const Step = lazy(() => import('./pages/Step.jsx'))
+const UserProfile = lazy(() => import('./pages/UserProfile.jsx'))
+// const Application = lazy(()=> import('./pages/Application.jsx'))
+// const CheckOutSuccess = lazy(()=> import('./pages/Payment/CheckOutSuccess.jsx'))
+// const CheckOutFail = lazy(()=> import('./pages/Payment/CheckOutFail.jsx'))
+const RegistrationPaymentSuccess = lazy(() =>
+  import('./pages/Payment/RegistrationPaymentSuccess.jsx')
+)
+const Batches = lazy(() => import('./pages/Batches.jsx'))
+const UserRegistration = lazy(() => import('./pages/UserRegistration.jsx'))
+const UserRegistrationPaymentSuccess = lazy(() =>
+  import('./pages/Payment/UserRegistrationPaymentSuccess.jsx')
+)
+const AllStudentData = lazy(() => import('./pages/AllStudentData .jsx'))
+const About = lazy(() => import('./pages/About.jsx'))
 const Home = lazy(() => import('./pages/Home.jsx'))
 
 function App () {
